@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.*;
 
-	public class PokemonRunner implements Cloneable
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+	public class PokemonRunner extends JFrame implements Cloneable 
 	{
 	public Object clone()
 	{  
@@ -17,12 +21,14 @@ import java.util.Scanner;
 	
                         static ArrayList <Pokemon>pokemonStats;
                         static ArrayList<Pokemon> caughtList = new ArrayList<Pokemon>();
-                        static int ballCount = 10;
+                        static int ballCount;
                         static Pokemon battlingPokemon;
                         static int caughtPokemon = 0;
                         static int turnCounter = 0;
                         static int pointsSum = 0;
                         static boolean adventureMode = true;
+                        static int className;
+                        static JFrame frame = new JFrame();
 
                         public static void main(String[] args)
                                 {
@@ -34,63 +40,135 @@ import java.util.Scanner;
                                 }
 
                         public static void introduce()
-                        {
-                        Scanner userInput = new Scanner(System.in);
-                                System.out.println("Hello! Welcome to the Pokemon Safari Zone!");
-                                System.out.println();
-                                System.out.println("Here you have the ability to catch different Pokemon using rocks, bait, and Safari Balls.");
-                                System.out.println("You will be given " + ballCount + " Safari Balls to use to try to catch as many Pokemon as possible.");
-                                System.out.println("Would you like to hear the details of how this game works and/or play a game in practice mode?");
-                                System.out.println("1) Yes");
-                                System.out.println("2) No");
-                                int yesNo = userInput.nextInt();
-                                if (yesNo == 1)
-                                        {
-                                                giveRules();
-                                        }
-                                else
-                                        {
-                                                System.out.println("Ok then let's get started with a game in adventure mode!");
-                                                System.out.println();
-
-                                        }
+                {
+//                        Scanner userInput = new Scanner(System.in);
+//                                System.out.println("Hello! Welcome to the Pokemon Safari Zone!");
+//                                System.out.println();
+//                                System.out.println("Here you have the ability to catch different Pokemon using rocks, bait, and Safari Balls.");
+//                                System.out.println("You will be given " + ballCount + " Safari Balls to use to try to catch as many Pokemon as possible.");
+//                                System.out.println("Would you like to hear the details of how this game works and/or play a game in practice mode?");
+//                                System.out.println("1) Yes");
+//                                System.out.println("2) No");
+//                                int yesNo = userInput.nextInt();
+//                                if (yesNo == 1)
+//                                        {
+//                                                giveRules();
+//                                        }
+//                                else
+//                                        {
+//                                                System.out.println("Ok then let's get started with a game in adventure mode!");
+//                                                System.out.println();
+//
+//                                        }
+               	 	 Object[] options = {"OK"};
+                	 className = JOptionPane.showOptionDialog(frame, "Hello! Welcome to the Pokemon Safari Zone!",
+              				"Introduction",
+              				JOptionPane.DEFAULT_OPTION,
+              				JOptionPane.WARNING_MESSAGE,
+              				null, options, options[0]);
+                	
+                	 Object[] options1 = {"OK"};
+                	 className = JOptionPane.showOptionDialog(frame, "Here you have the ability to catch different Pokemon using rocks, bait, and Safari Balls.",
+              				"Introduction",
+              				JOptionPane.DEFAULT_OPTION,
+              				JOptionPane.WARNING_MESSAGE,
+              				null, options1, options1[0]);
+                	 
+                ballCount = Integer.parseInt(JOptionPane.showInputDialog("How many Safari Balls would you like to start with?"));
+                	 
+                	 Object[] options2 = {"Yes", "No"};
+                	 className = JOptionPane.showOptionDialog(frame, "Would you like to hear the details of how this game works and/or play a game in practice mode?",
+              				"Introduction",
+              				JOptionPane.DEFAULT_OPTION,
+              				JOptionPane.WARNING_MESSAGE,
+              				null, options2, options2[1]);
+                	 
+                	 switch(className)
+                     {
+                    	 case 0:
+                    			 {
+                    				
+                    				 giveRules();
+                    				 break;
+                    			 }
+                    	 case 1:
+                    			 {
+                    				 JOptionPane.showMessageDialog(frame, "Ok then let's get started with a game in adventure mode!");                				 
+                    				 break;
+                    			 }
+                     }
                         }
 
                         public static void giveRules()
                         {
-                        Scanner userInput = new Scanner(System.in);
-                        System.out.println();
-                        System.out.println("The Safari Zone is simple");
-                        System.out.println("Every few seconds you will randomly encounter a random Pokemon.");
-                        System.out.println("All Pokemon have a random chance of escaping that increases each turn");
-                        System.out.println("The more rare Pokemon have a greater chance of escaping");
-                        System.out.println();
-                        System.out.println("Each Pokemon has a health value that when lowered, makes the Pokemon easier to catch");
-                        System.out.println("You can throw a rock to lower it's health by 10 points but this will also make the Pokemon 5% more likely to escape");
-                        System.out.println("You can also throw bait which will use up a turn but make the Pokemon 15% less likely to escape");
-                        System.out.println("When you've decided the Pokemon is at a low enough health, you can throw a Safari ball and try to catch it!");
-                        System.out.println("The odds of catching a Pokemon also increases the longer you have been in battle");
-                        System.out.println("Remember that doing any one of these actions uses up a turn so choose wisely what to do!");
-                        System.out.println();
-                        System.out.println("You can also enter practice mode where you get to choose which Pokemon you battle against");
-                        System.out.println("Which mode would you like to play?");
-                        System.out.println("1) Adventure");
-                        System.out.println("2) Practice");
-                        int gameChoice = userInput.nextInt();
-                        if (gameChoice == 1)
-                                {
-                                        adventureMode = true;
-                                }
-                        else
-                                {
-                                        adventureMode = false;
+//                        Scanner userInput = new Scanner(System.in);
+//                        System.out.println();
+//                        System.out.println("The Safari Zone is simple");
+//                        System.out.println("Every few seconds you will randomly encounter a random Pokemon.");
+//                        System.out.println("All Pokemon have a random chance of escaping that increases each turn");
+//                        System.out.println("The more rare Pokemon have a greater chance of escaping");
+//                        System.out.println();
+//                        System.out.println("Each Pokemon has a health value that when lowered, makes the Pokemon easier to catch");
+//                        System.out.println("You can throw a rock to lower it's health by 10 points but this will also make the Pokemon 5% more likely to escape");
+//                        System.out.println("You can also throw bait which will use up a turn but make the Pokemon 15% less likely to escape");
+//                        System.out.println("When you've decided the Pokemon is at a low enough health, you can throw a Safari ball and try to catch it!");
+//                        System.out.println("The odds of catching a Pokemon also increases the longer you have been in battle");
+//                        System.out.println("Remember that doing any one of these actions uses up a turn so choose wisely what to do!");
+//                        System.out.println();
+//                        System.out.println("You can also enter practice mode where you get to choose which Pokemon you battle against");
+//                        System.out.println("Which mode would you like to play?");
+//                        System.out.println("1) Adventure");
+//                        System.out.println("2) Practice");
+             
+                    JOptionPane.showMessageDialog(frame, "The Safari Zone is simple...");
+                    JOptionPane.showMessageDialog(frame, "Every few seconds you will randomly encounter a random Pokemon.");
+                    JOptionPane.showMessageDialog(frame, "All Pokemon have a random chance of escaping that increases each turn");
+                    JOptionPane.showMessageDialog(frame, "The more rare Pokemon have a greater chance of escaping");
+                    JOptionPane.showMessageDialog(frame, "Each Pokemon has a health value that when lowered, makes the Pokemon easier to catch");
+                    JOptionPane.showMessageDialog(frame, "You can throw a rock to lower it's health by 10 points but this will also make the Pokemon 5% more likely to escape");
+                    JOptionPane.showMessageDialog(frame, "You can also throw bait which will use up a turn but make the Pokemon 15% less likely to escape");
+                    JOptionPane.showMessageDialog(frame, "When you've decided the Pokemon is at a low enough health, you can throw a Safari ball and try to catch it!");
+                    JOptionPane.showMessageDialog(frame, "The odds of catching a Pokemon also increases the longer you have been in battle");
+                    JOptionPane.showMessageDialog(frame, "Remember that doing any one of these actions uses up a turn so choose wisely what to do!");
+                    JOptionPane.showMessageDialog(frame, "You can also enter practice mode where you get to choose which Pokemon you battle against");
+                    
+                      Object[] options1 = {"Practice", "Adventure"};              
+                      className = JOptionPane.showOptionDialog(frame, "Which mode would you like to play?",
+              				"Mode Choice",
+              				JOptionPane.YES_NO_CANCEL_OPTION,
+              				JOptionPane.QUESTION_MESSAGE,
+              				null, options1, options1[1]);
+                      
+                      switch(className)
+                      {
+                     	 case 0:
+                     			 {
+                     				 JOptionPane.showMessageDialog(frame, "Practice makes perfect");
+                     				 adventureMode = false;
+                     				 break;
+                     			 }
+                     	 case 1:
+                     			 {
+                     				 JOptionPane.showMessageDialog(frame, "You are in for a wild ride!");
+                     				 adventureMode = true;
+                     				 break;
+                     			 }
+                        
+//                        int gameChoice = userInput.nextInt();
+//                        if (gameChoice == 1)
+//                                {
+//                                        adventureMode = true;
+//                                }
+//                        else
+//                                {
+//                                        adventureMode = false;
+//
+//                                }
 
-                                }
-
-                        System.out.println("Ok now we're ready to begin!");
-                        System.out.println();
-
-                        }
+//                        System.out.println("Ok now we're ready to begin!");
+//                        System.out.println();
+                      }
+              }
 
                         public static void makePokemons()
                                 {
@@ -202,132 +280,251 @@ import java.util.Scanner;
                                     }
                          if (adventureMode == false)
                                  {
-                                         System.out.println("Which Pokemon would you like to attempt to catch? (choose a number)");
-                                         for(int i=0; i<pokemonStats.size(); i++)
-                                                 {
-                                                        System.out.println((i+1)+ ")" + pokemonStats.get(i).getName());
-                                                 }
+//                                         System.out.println("Which Pokemon would you like to attempt to catch? (choose a number)");
+//                                         for(int i=0; i<pokemonStats.size(); i++)
+//                                                 {
+//                                                        System.out.println((i+1)+ ")" + pokemonStats.get(i).getName());
+//                                                 }
+                                	 final String [] pokemonChoice = {"Psyduck", "Magikarp", "Gyarados", "Scyther", "Pinsir", "Doduo", "Kangaskhan", "Venonat", "Nidorino", "Nidorina", "Slowpoke", "Poliwag", "Polywrath", "Dragonite"};
+                         				{
+                         					final JFrame frame = new JFrame();
+                         					String pokemonSelection = (String) JOptionPane.showInputDialog(frame, "Choose which Pokemon you would like to battle",
+                         					"Choose Pokemon",
+                         					JOptionPane.QUESTION_MESSAGE,
+                         					null, pokemonChoice, pokemonChoice[0]);	
+                         					switch (pokemonSelection)
+                                            {
+                                            case "Psyduck":
+                                                            {
+                                                                    battlingPokemon = (Pokemon) pokemonStats.get(0).clone();
+                                                                    break;
 
-                                         int pokemonChoice = userInput.nextInt();
-                                        System.out.println(pokemonChoice);
-                                         switch (pokemonChoice)
-                                                {
-                                                case 1:
-                                                                {
-                                                                        battlingPokemon = (Pokemon) pokemonStats.get(0).clone();
-                                                                        break;
+                                                            }
+                                            case "Magikarp":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(1).clone();
+                                                                    break;
+                                                            }
+                                            case "Gyarados":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(2).clone();
+                                                                    break;
+                                                            }
+                                            case "Scyther":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(3).clone();
+                                                                    break;
+                                                            }
+                                            case "Pinsir":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(4).clone();
+                                                                    break;
+                                                            }
 
-                                                                }
-                                                case 2:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(1).clone();
-                                                                        break;
-                                                                }
-                                                case 3:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(2).clone();
-                                                                        break;
-                                                                }
-                                                case 4:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(3).clone();
-                                                                        break;
-                                                                }
-                                                case 5:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(4).clone();
-                                                                        break;
-                                                                }
+                                            case "Doduo":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(5).clone();
+                                                                    break;
+                                                            }
+                                            case "Kangaskhan":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(6).clone();
+                                                                    break;
+                                                            }
+                                            case "Venonat":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(7).clone();
+                                                                    break;
+                                                            }
+                                            case "Nidorino":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(8).clone();
+                                                                    break;
+                                                            }
+                                            case "Nidorina":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(9).clone();
+                                                                    break;
+                                                            }
+                                            case "Slowpoke":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(10).clone();
+                                                                    break;
+                                                            }
+                                            case "Poliwag":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(11).clone();
+                                                                    break;
+                                                            }
+                                            case "Polywrath":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(12).clone();
+                                                                    break;
+                                                            }
+                                            case "Dragonite":
+                                                            {
+                                                            	battlingPokemon = (Pokemon) pokemonStats.get(13).clone();
+                                                                    break;
+                                                            }
+                                            }
+                         				}
 
-                                                case 6:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(5).clone();
-                                                                        break;
-                                                                }
-                                                case 7:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(6).clone();
-                                                                        break;
-                                                                }
-                                                case 8:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(7).clone();
-                                                                        break;
-                                                                }
-                                                case 9:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(8).clone();
-                                                                        break;
-                                                                }
-                                                case 10:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(9).clone();
-                                                                        break;
-                                                                }
-                                                case 11:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(10).clone();
-                                                                        break;
-                                                                }
-                                                case 12:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(11).clone();
-                                                                        break;
-                                                                }
-                                                case 13:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(12).clone();
-                                                                        break;
-                                                                }
-                                                case 14:
-                                                                {
-                                                                	battlingPokemon = (Pokemon) pokemonStats.get(13).clone();
-                                                                        break;
-                                                                }
-                                                }
+//                                         int pokemonChoice = userInput.nextInt();                              
+//                                         switch (pokemonChoice)
+//                                                {
+//                                                case 1:
+//                                                                {
+//                                                                        battlingPokemon = (Pokemon) pokemonStats.get(0).clone();
+//                                                                        break;
+//
+//                                                                }
+//                                                case 2:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(1).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 3:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(2).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 4:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(3).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 5:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(4).clone();
+//                                                                        break;
+//                                                                }
+//
+//                                                case 6:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(5).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 7:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(6).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 8:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(7).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 9:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(8).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 10:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(9).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 11:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(10).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 12:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(11).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 13:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(12).clone();
+//                                                                        break;
+//                                                                }
+//                                                case 14:
+//                                                                {
+//                                                                	battlingPokemon = (Pokemon) pokemonStats.get(13).clone();
+//                                                                        break;
+//                                                                }
+//                                                }
                                           showMenu();
                                  }
                         }
 
                         public static void showMenu()
                         {
-                                Scanner userInput = new Scanner(System.in);
-                                System.out.println(battlingPokemon.getName());
-                                System.out.println("You are fighting a " + battlingPokemon.getName() + " with " + battlingPokemon.getHealth() + " HP");
-                                System.out.println("What move will you make? (select a number 1-4)");
-                                System.out.println("-----------------   -----------------");
-                                System.out.println("|(" + 1 + ") Throw Rock |   |(" + 2 + ") Throw Bait |");
-                                System.out.println("-----------------   -----------------");
-                                System.out.println("-----------------   -----------------");
-                                System.out.println("|(" + 3 + ") Throw Ball |   |(" + 4 + ")  End Game  |");
-                                System.out.println("-----------------   -----------------");
+//                                Scanner userInput = new Scanner(System.in);
+//                                System.out.println(battlingPokemon.getName());
+//                                System.out.println("You are fighting a " + battlingPokemon.getName() + " with " + battlingPokemon.getHealth() + " HP");
+//                                System.out.println("What move will you make? (select a number 1-4)");
+//                                System.out.println("-----------------   -----------------");
+//                                System.out.println("|(" + 1 + ") Throw Rock |   |(" + 2 + ") Throw Bait |");
+//                                System.out.println("-----------------   -----------------");
+//                                System.out.println("-----------------   -----------------");
+//                                System.out.println("|(" + 3 + ") Throw Ball |   |(" + 4 + ")  End Game  |");
+//                                System.out.println("-----------------   -----------------");
 
-                                int selectMove = userInput.nextInt();
-
-                                switch(selectMove)
-                                {
-
-                                        case 1:
-                                                {
-                                                throwRock();
-                                                break;
-                                                }
-                                        case 2:
-                                                {
-                                                throwBait();
-                                                break;
-                                                }
-                                        case 3:
-                                                {
-                                                throwBall();
-                                                break;
-                                                }
-                                        case 4:
-                                                {
-                                                endGame();
-                                                break;
-                                                }
-                                }
+                        	Object[] options = {"Throw Rock", "Throw Bait", "Throw Ball", "Run Away"};
+                     		//////
+                             
+                             className = JOptionPane.showOptionDialog(frame, "What move will you make?",
+                     				("You are fighting a " + battlingPokemon.getName()),
+                     				JOptionPane.YES_NO_CANCEL_OPTION,
+                     				JOptionPane.QUESTION_MESSAGE,
+                     				null, options, options[3]);
+                             
+                             switch(className)
+                             {
+                            	 case 0:
+                            			 {
+                            				 JOptionPane.showMessageDialog(frame, "You threw a rock!");
+                            				 throwRock();
+                            				 break;
+                            			 }
+                            	 case 1:
+                            			 {
+                            				 JOptionPane.showMessageDialog(frame, "You threw some bait!");
+                            				 throwBait();
+                            				 break;
+                            			 }
+                            	 case 2:
+                            			 {
+                            				 JOptionPane.showMessageDialog(frame, "You threw a Safari Ball!");
+                            				 throwBall();
+                            				 break;
+                            			 }
+                            	 case 3:
+                            			 {
+                            				 JOptionPane.showMessageDialog(frame, "You successfully got away!");
+                            				 endGame();
+                            				 break;
+                            			 }
+                             }
+                             
+//                                int selectMove = userInput.nextInt();
+//
+//                                switch(selectMove)
+//                                {
+//
+//                                        case 1:
+//                                                {
+//                                                throwRock();
+//                                                break;
+//                                                }
+//                                        case 2:
+//                                                {
+//                                                throwBait();
+//                                                break;
+//                                                }
+//                                        case 3:
+//                                                {
+//                                                throwBall();
+//                                                break;
+//                                                }
+//                                        case 4:
+//                                                {
+//                                                endGame();
+//                                                break;
+//                                                }
+//                                }
                         }
 
                         public static void throwRock()
